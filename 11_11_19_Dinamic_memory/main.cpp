@@ -10,6 +10,9 @@ int** insert_row(int** Arr, int& m, int n, int index);
 int** pop_row_back(int** Arr, int& m, int n);
 int** pop_row_front(int** Arr, int& m, int n);
 int** erase_row(int** Arr, int& m, int n, int index);
+int** push_row_back22(int** Arr, int& m, int n);
+int** push_row_front22(int** Arr, int& m, int n);
+int** incert22(int** Arr, int& m, int n, int index);
 
 void main()
 {
@@ -32,16 +35,17 @@ void main()
 	FillRand(Arr, m, n);
 	print(Arr, m, n);
 
-	cout << "Добавляем строку в конец:" << endl;
+	/*cout << "Добавляем строку в конец:" << endl;
 	Arr = push_row_back(Arr, m, n);
 	print(Arr, m, n);
 
 	cout << "Добавляем строку в начало:" << endl;
 	Arr = push_row_front(Arr, m, n);
 	print(Arr, m, n);
-
+	*/
 	cout << "Добавляем строку по индексу:" << endl;
 	int index;
+	/*
 	cout << "введите индекс: "; cin >> index;
 	Arr = insert_row(Arr, m, n, index);
 	cout << "Array added" << endl;
@@ -58,7 +62,19 @@ void main()
 	cout << "Удаляем строку по индексу:" << endl;
 	cout << "введите индекс: "; cin >> index;
 	Arr = erase_row(Arr, m, n, index);
+	print(Arr, m, n);*/
+
+	cout << "last 0  :" << endl;
+	Arr = push_row_back22(Arr, m, n);
 	print(Arr, m, n);
+	cout << "first 0  :" << endl;
+	Arr = push_row_front22(Arr, m, n);
+	print(Arr, m, n);
+	cout << "index 0  :" << endl;
+	cout << "введите индекс: "; cin >> index;
+	Arr = incert22(Arr, m, n, index);
+	print(Arr, m, n);
+
 
 	// Удаление двумерного динамического массива
 	for (int i = 0; i < m; i++)
@@ -168,7 +184,7 @@ int** insert_row(int** Arr, int& m, int n, int index)
 	}
 	delete[] Arr;
 	Arr = buffer;
-	Arr[m] = new int [n] {}; //я думал что нужно проинициализировать (0) строку
+	Arr[index] = new int [n] {}; 
 	m++;
 	return Arr;
 }
@@ -244,3 +260,35 @@ int** erase_row(int** Arr, int& m, int n, int index)
 	return buffer;
 }
 ////////////____________________________________///////////////////////////
+
+int** push_row_back22(int** Arr, int& m, int n)
+{
+	int** buffer = new int*[m + 1];
+	for (int i = 0; i < m; i++) buffer[i] = Arr[i];
+	delete[] Arr;
+	Arr = buffer;
+	Arr[m] = new int [n] {};
+	m++;
+	return Arr;
+}
+int** push_row_front22(int** Arr, int& m, int n)
+{
+	int** buffer = new int*[m + 1];
+	for (int i = 0; i < m; i++)	buffer[i + 1] = Arr[i];
+	delete[] Arr;
+	Arr = buffer;
+	Arr[0] = new int [n] {};
+	m++;
+	return Arr;
+}
+int** incert22(int** Arr, int& m, int n, int index)
+{
+	int** buffer = new int*[m + 1];
+	for (int i = 0; i < index; i++)	buffer[i] = Arr[i];
+	for (int i = index; i < m; i++)	buffer[i + 1] = Arr[i];
+	delete[] Arr;
+	Arr = buffer;
+	Arr[index] = new int [n] {};
+	m++;
+	return Arr;
+}
