@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11_11_19_Dinamic_memory", "11_11_19_Dinamic_memory\11_11_19_Dinamic_memory.vcxproj", "{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Debug|x64.ActiveCfg = Debug|x64
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Debug|x64.Build.0 = Debug|x64
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Debug|x86.ActiveCfg = Debug|Win32
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Debug|x86.Build.0 = Debug|Win32
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Release|x64.ActiveCfg = Release|x64
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Release|x64.Build.0 = Release|x64
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Release|x86.ActiveCfg = Release|Win32
+		{64C545BF-F4A6-465C-9E36-FC0DE6C1B719}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {109560A0-C90E-416C-A153-8C37CE979222}
+	EndGlobalSection
+EndGlobal
