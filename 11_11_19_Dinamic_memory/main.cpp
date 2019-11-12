@@ -17,6 +17,13 @@ int** incert22(int** Arr, int& m, int n, int index);
 int** pop_row_back22(int** Arr, int& m, int n);
 int** pop_row_front22(int** Arr, int& m, int n);
 int** erase_row22(int** Arr, int& m, int n, int index);
+/////////////////////////////////////////////////////
+int** push_col_back(int** Arr, int m, int& n);
+int** push_col_front(int** Arr, int m, int& n);
+int** insert_col(int** Arr, int m, int& n, int index);
+int** pop_col_back(int** Arr, int m, int& n);
+int** pop_col_front(int** Arr, int m, int& n);
+int** erase_col(int** Arr, int m, int& n, int index);
 
 void main()
 {
@@ -88,7 +95,27 @@ void main()
 	cout << "введите индекс: "; cin >> index;
 	Arr = erase_row22(Arr, m, n, index);
 	print(Arr, m, n);
-
+	////////
+	cout << "\t" << "Add last Column  :" << endl;
+	Arr = push_col_back(Arr, m, n);
+	print(Arr, m, n);
+	cout << "\t" << "Add first Column  :" << endl;
+	Arr = push_col_front(Arr, m, n);
+	print(Arr, m, n);
+	cout << "\t" << "Add column by index  :" << endl;
+	cout << "введите индекс: "; cin >> index;
+	Arr = insert_col(Arr, m, n, index);
+	print(Arr, m, n);
+	cout << "\t" << "Delete last Column  :" << endl;
+	Arr = pop_col_back(Arr, m, n);
+	print(Arr, m, n);
+	cout << "\t" << "Delete first Column  :" << endl;
+	Arr = pop_col_front(Arr, m, n);
+	print(Arr, m, n);
+	cout << "\t" << "Delete column by index  :" << endl;
+	cout << "введите индекс: "; cin >> index;
+	Arr = erase_col(Arr, m, n, index);
+	print(Arr, m, n);
 
 	// Удаление двумерного динамического массива
 	for (int i = 0; i < m; i++)
@@ -326,5 +353,104 @@ int** erase_row22(int** Arr, int& m, int n, int index)
 	for (int i = 0; i < index; i++)	buffer[i] = Arr[i];
 	for (int i = index; i < m; i++)	buffer[i] = Arr[i + 1];
 	delete[] Arr;
+	return buffer;
+}
+int** push_col_back(int** Arr, int m, int& n)
+{
+	int** buffer = new int*[m];
+	for (int i = 0; i < m; i++)	buffer[i] = Arr[i]; 
+	delete[] Arr;
+	for (int i = 0; i < m; i++) buffer[i][n] = 0;
+	n++;
+	return buffer;
+}
+int** push_col_front(int** Arr, int m, int& n)
+{
+	int** buffer = new int*[m];
+	n++;
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n - 1; j++)
+		{
+			buffer[i][j + 1] = Arr[i][j]; //копируем элементы со здвигом +1(j).
+		}
+	}
+	delete[] Arr;
+	//for (int i = 0; i < m; i++) buffer[i][0] = 0;
+	return buffer;
+}
+int** insert_col(int** Arr, int m, int& n, int index)
+{
+	int** buffer = new int*[m];
+	n++;
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < index; j++)
+		{
+			buffer[i][j] = Arr[i][j];
+		}
+	}
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = index; j < n - 1; j++)
+		{
+			buffer[i][j + 1] = Arr[i][j]; //копируем элементы со здвигом +1(j).
+		}
+	}
+	delete[] Arr;
+	return buffer;
+}
+int** pop_col_back(int** Arr, int m, int& n)
+{
+	int** buffer = new int*[m];
+	--n;
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			buffer[i][j] = Arr[i][j];
+		}
+	}
+	delete[] Arr;
+	return buffer;
+}
+int** pop_col_front(int** Arr, int m, int& n)
+{
+	int** buffer = new int*[m];
+	--n;
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			buffer[i][j] = Arr[i][j + 1];
+		}
+	}
+	delete[] Arr;
+	return buffer;
+}
+int** erase_col(int** Arr, int m, int& n, int index)
+{
+	int** buffer = new int*[m];
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n - 1] {};
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < index; j++)
+		{
+			buffer[i][j] = Arr[i][j];
+		}
+	}
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = index; j < n; j++)
+		{
+			buffer[i][j] = Arr[i][j + 1];
+		}
+	}
+	delete[] Arr;
+	n--;
 	return buffer;
 }
