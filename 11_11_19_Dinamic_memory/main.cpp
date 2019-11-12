@@ -24,6 +24,7 @@ int** insert_col(int** Arr, int m, int& n, int index);
 int** pop_col_back(int** Arr, int m, int& n);
 int** pop_col_front(int** Arr, int m, int& n);
 int** erase_col(int** Arr, int m, int& n, int index);
+void clear(int** Arr, int m);
 
 void main()
 {
@@ -116,13 +117,13 @@ void main()
 	cout << "введите индекс: "; cin >> index;
 	Arr = erase_col(Arr, m, n, index);
 	print(Arr, m, n);
-
-	// Удаление двумерного динамического массива
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
+	clear(Arr, m);
+	//// Удаление двумерного динамического массива
+	//for (int i = 0; i < m; i++)
+	//{
+	//	delete[] Arr[i];
+	//}
+	//delete[] Arr;
 }
 //////////////---------------------------------/////////////////////////////
 void FillRand(int** Arr, const int m, const int n)
@@ -355,6 +356,7 @@ int** erase_row22(int** Arr, int& m, int n, int index)
 	delete[] Arr;
 	return buffer;
 }
+////////
 int** push_col_back(int** Arr, int m, int& n)
 {
 	int** buffer = new int*[m];
@@ -453,4 +455,12 @@ int** erase_col(int** Arr, int m, int& n, int index)
 	delete[] Arr;
 	n--;
 	return buffer;
+}
+void clear(int** Arr, int m)
+{
+	for (int i = 0; i < m; i++)
+	{
+		delete[] Arr[i];
+	}
+	delete[] Arr;
 }
