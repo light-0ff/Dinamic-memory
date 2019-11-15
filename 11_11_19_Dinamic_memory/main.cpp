@@ -1,37 +1,18 @@
-#include<iostream>
-using namespace std;
-
-template < typename T >void FillRand(T** Arr, const int m, const int n);
-template < typename T >void print(T** Arr, const int m, const int n);
-/////////////////////////////////////////////////////////
-template < typename T >T** push_row_back(T** arr, int& m, int n);
-template < typename T >T** push_row_front(T** arr, int& m, int n);
-template < typename T >T** insert_row(T** arr, int& m, int n, int index);
-template < typename T >T** pop_row_back(T** arr, int& m, int n);
-template < typename T >T** pop_row_front(T** arr, int& m, int n);
-template < typename T >T** erase_row(T** arr, int& m, int n, int index);
-////////////////////////////////////////////////////////
-template < typename T >T** push_row_back22(T** Arr, int& m, int n);
-template < typename T >T** push_row_front22(T** Arr, int& m, int n);
-template < typename T >T** incert22(T** Arr, int& m, int n, int index);
-template < typename T >T** pop_row_back22(T** Arr, int& m, int n);
-template < typename T >T** pop_row_front22(T** Arr, int& m, int n);
-template < typename T >T** erase_row22(T** Arr, int& m, int n, int index);
-/////////////////////////////////////////////////////
-template < typename T >void push_col_back(T** Arr, int m, int& n);
-template < typename T >void push_col_front(T** Arr, int m, int& n);
-template < typename T >void insert_col(T** Arr, int m, int& n, int index);
-template < typename T >void pop_col_back(T** Arr, int m, int& n);
-template < typename T >void pop_col_front(T** Arr, int m, int& n);
-template < typename T >void erase_col(T** Arr, int m, int& n, int index);
-template < typename T >void clear(T** Arr, int m);
-template < typename T >T** allocate(const int m, const int n);
+#include"functions.h"
+#include"Memory.cpp"
+#include"BasseFunctions.cpp"
+#include"SimpleArrays.cpp"
+#include"MultidemensionalArrays.cpp"
 
 //#define ROWS
+//#define ALTERNATIVE_ROWS
+#define COLS
+
+typedef char DataType; // go to teacher and copy realisation of this
 
 void main()
 {
-	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "RUS");
 
 	int m; // Количество строк
 	int n; // Количество элементов строки
@@ -57,8 +38,7 @@ void main()
 	print(Arr, m, n);
 	cout << "Äîáàâëÿåì ñòðîêó ïî èíäåêñó:" << endl;
 	
-#endif // ROWS
-	/*
+	
 	cout << "Добавление строчки по индексу: "; cin >> index;
 	Arr = insert_row(Arr, m, n, index);
 	cout << "Array added" << endl;
@@ -75,9 +55,10 @@ void main()
 	cout << "Óäàëÿåì ñòðîêó ïî èíäåêñó:" << endl;
 	cout << "ââåäèòå èíäåêñ: "; cin >> index;
 	Arr = erase_row(Arr, m, n, index);
-	print(Arr, m, n);*/
-
-	/*cout << "\t" << "last 0  :" << endl;
+	print(Arr, m, n);
+#endif // ROWS
+#ifdef ALTERNATIVE_ROWS
+	cout << "\t" << "last 0  :" << endl;
 	Arr = push_row_back22(Arr, m, n);
 	print(Arr, m, n);
 	cout << "\t" << "first 0  :" << endl;
@@ -96,8 +77,11 @@ void main()
 	cout << "\t" << "Delete index  :" << endl;
 	cout << "incert index: "; cin >> index;
 	Arr = erase_row22(Arr, m, n, index);
-	print(Arr, m, n);*/
-	////////
+	print(Arr, m, n);
+
+
+#endif // ALTERNATIVE_ROWS
+#ifdef COLS
 	cout << "\t" << "Add last Column  :" << endl;
 	push_col_back(Arr, m, n);
 	print(Arr, m, n);
@@ -118,7 +102,10 @@ void main()
 	cout << "incert index: "; cin >> index;
 	erase_col(Arr, m, n, index);
 	print(Arr, m, n);
+#endif // COLS
 	clear(Arr, m);
+
+
 
 	//
 	//// delete ArrAy
@@ -129,305 +116,4 @@ void main()
 	//delete[] Arr;
 }
 //////////////---------------------------------/////////////////////////////
-template < typename T >void FillRand(T** Arr, const int m, const int n)
-{
-	for (int i = 0; i < m; i++)  //строчки
-	{
-		for (int j = 0; j < n; j++) //êîëè÷åñòâî åëåìåíòîâ â ñòðîêå
-		{
-			Arr[i][j] = rand() % 100;
-			Arr[i][j] /= 10;
-		}
-	}
-}
-template < typename T >void print(T** Arr, const int m, const int n)
-{
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			std::cout << Arr[i][j] << "\t";
-		}
-		std::cout << endl;
-	}
-	std::cout << endl;
-}
-template < typename T >T** push_row_back(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[m + 1]{};
-	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			buffer[i][j] = Arr[i][j]; //êîïèðóåì ýëåìåíòû ÑÎÎÒÂÅÒÑÒÂÅÍÍÎ.
-		}
-	}
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
-	Arr = buffer;
-	Arr[m] = new int [n] {};
-	m++;
-	return Arr;
-}
-template < typename T >T** push_row_front(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[m + 1]{};
-	for (int i = 0; i < m; i++)
-	{
-		buffer[i] = new int[n] {};
-	}
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (i == m - 1) break;
-			buffer[i + 1][j] = Arr[i][j]; //êîïèðóåì ýëåìåíòû ñî çäâèãîì +1(i).
-		}
-	}
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
-	Arr = buffer;
-	Arr[m] = new int [n] {}; //ÿ äóìàë ÷òî íóæíî âñòàâèòü â (0) ñòðîêó
-	m++;
-	return Arr;
-}
-template < typename T >T** insert_row(T** Arr, int& m, int n, int index)
-{
-	if (index > m) return Arr;
-	T** buffer = new T*[m + 1]{};
-	for (int i = 0; i < m; i++)
-	{
-		buffer[i] = new int[n] {};
-	}
-	for (int i = 0; i < index; i++)
-	{
-		for (int j = 0; j < n; j++)	buffer[i][j] = Arr[i][j];
-	}
-	for (int i = index; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (i == m - 1) break;
-			buffer[i + 1][j] = Arr[i][j];
-		}
-	}
-	for (int i = 0; i < m; i++)	delete[] Arr[i];
 
-	delete[] Arr;
-	Arr = buffer;
-	Arr[index] = new int [n] {};
-	m++;
-	return Arr;
-}
-template < typename T >T** pop_row_back(T** Arr, int& m, int n) //óäàëÿåò ïîñëåäíþþ ñòðîêó
-{
-	T** buffer = new T*[--m]{};
-	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			buffer[i][j] = Arr[i][j]; //êîïèðóåì ýëåìåíòû ÑÎÎÒÂÅÒÑÒÂÅÍÍÎ.
-		}
-	}
-	for (int i = 0; i < m; i++)	delete[] Arr[i];
-	delete[] Arr;
-	return buffer;
-}
-template < typename T >T** pop_row_front(T** Arr, int& m, int n) //óäàëÿåò ïîñëåäíþþ ñòðîêó
-{
-	int** buffer = new int*[--m]{};
-	for (int i = 0; i < m; i++)
-	{
-		buffer[i] = new int[n] {};
-	}
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			buffer[i][j] = Arr[i + 1][j]; //êîïèðóåì ýëåìåíòû ÑÎÎÒÂÅÒÑÒÂÅÍÍÎ.
-		}
-	}
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
-	return buffer;
-}
-template < typename T >T** erase_row(T** Arr, int& m, int n, int index)
-{
-	if (index > m) return Arr;
-	int** buffer = new int*[--m]{};
-	for (int i = 0; i < m; i++)
-	{
-		buffer[i] = new int[n] {};
-	}
-	for (int i = 0; i < index; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			buffer[i][j] = Arr[i][j];
-		}
-	}
-	for (int i = index; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			buffer[i][j] = Arr[i + 1][j];
-		}
-	}
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
-	return buffer;
-}
-////////////____________________________________///////////////////////////
-template < typename T >T** push_row_back22(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[m + 1];
-	for (int i = 0; i < m; i++) buffer[i] = Arr[i];
-	delete[] Arr;
-	Arr = buffer;
-	Arr[m] = new int [n] {};
-	m++;
-	return Arr;
-}
-template < typename T >T** push_row_front22(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[m + 1];
-	for (int i = 0; i < m; i++) buffer[i + 1] = Arr[i];
-	delete[] Arr;
-	Arr = buffer;
-	Arr[0] = new T[n] {};
-	m++;
-	return Arr;
-}
-template < typename T >T** incert22(T** Arr, int& m, int n, int index)
-{
-	T** buffer = new T*[m + 1];
-	for (int i = 0; i < index; i++) buffer[i] = Arr[i];
-	for (int i = index; i < m; i++) buffer[i + 1] = Arr[i];
-	delete[] Arr;
-	Arr = buffer;
-	Arr[index] = new int [n] {};
-	m++;
-	return Arr;
-}
-template < typename T >T** pop_row_back22(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[--m];
-	for (int i = 0; i < m; i++) buffer[i] = Arr[i];
-	delete[] Arr;
-	return buffer;
-}
-template < typename T >T** pop_row_front22(T** Arr, int& m, int n)
-{
-	T** buffer = new T*[--m];
-	for (int i = 0; i < m; i++) buffer[i] = Arr[i + 1];
-	delete[] Arr;
-	return buffer;
-}
-template < typename T >T** erase_row22(T** Arr, int& m, int n, int index)
-{
-	T** buffer = new T*[--m];
-	for (int i = 0; i < index; i++) buffer[i] = Arr[i];
-	for (int i = index; i < m; i++) buffer[i] = Arr[i + 1];
-	delete[] Arr;
-	return buffer;
-}
-////////
-template < typename T >void push_col_back(T** Arr, int m, int& n)
-{
-	for (int i = 0; i < m; i++)
-	{
-		T* buffer = new T[n + 1]{};
-		for (int j = 0; j < m; j++) buffer[j] = Arr[i][j];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-	n++;
-}
-template < typename T >void push_col_front(T** Arr, int m, int& n)
-{
-	for (int i = 0; i < m; i++)
-	{
-		T* buffer = new T[n + 1]{};
-		for (int j = 0; j < m; j++) buffer[j + 1] = Arr[i][j];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-	n++;
-}
-template < typename T >void insert_col(T** Arr, int m, int& n, int index)
-{
-	for (int i = 0; i < m; i++)
-	{
-		T* buffer = new T[n + 1]{};
-		for (int j = 0; j < index; j++) buffer[j] = Arr[i][j];
-		for (int j = index; j < n; j++) buffer[j + 1] = Arr[i][j];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-	n++;
-}
-template < typename T >void pop_col_back(T** Arr, int m, int& n)
-{
-	--n;
-	for (int i = 0; i < m; i++)
-	{
-		T* buffer = new T[n]{};
-		for (int j = 0; j < n; j++) buffer[j] = Arr[i][j];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-}
-template < typename T >void pop_col_front(T** Arr, int m, int& n)
-{
-	--n;
-	for (int i = 0; i < m; i++)
-	{
-		int* buffer = new int[n]{};
-		for (int j = 0; j < n; j++) buffer[j] = Arr[i][j + 1];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-}
-template < typename T >void erase_col(T** Arr, int m, int& n, int index)
-{
-	--n;
-	for (int i = 0; i < m; i++)
-	{
-		int* buffer = new int[n]{};
-		for (int j = 0; j < index; j++) buffer[j] = Arr[i][j];
-		for (int j = index; j < n; j++) buffer[j] = Arr[i][j + 1];
-		delete[] Arr[i];
-		Arr[i] = buffer;
-	}
-}
-template < typename T >void clear(T** Arr, int m)
-{
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
-	delete[] Arr;
-}
-template < typename T >T** allocate(const int m, const int n)
-{
-	T** Arr = new T*[m];
-	for (int i = 0; i < m; i++)
-	{
-		Arr[i] = new T[n] {};
-	}
-	return Arr;
-}
