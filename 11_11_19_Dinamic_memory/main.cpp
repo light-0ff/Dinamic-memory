@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
 
-template < typename T >void FillRand(T Arr, const int m, const int n);
-template < typename T >void print(T Arr, const int m, const int n);
+void FillRand(int** Arr, const int m, const int n);
+void print(int** Arr, const int m, const int n);
 /////////////////////////////////////////////////////////
 template < typename T >int** push_row_back(T arr, int& m, int n);
 template < typename T >int** push_row_front(T arr, int& m, int n);
@@ -117,7 +117,7 @@ void main()
 	print(Arr, m, n);
 	clear(Arr, m);
 
-
+	//
 	//// delete ArrAy
 	//for (int i = 0; i < m; i++)
 	//{
@@ -126,7 +126,7 @@ void main()
 	//delete[] Arr;
 }
 //////////////---------------------------------/////////////////////////////
-template < typename T >void FillRand(T Arr, const int m, const int n)
+void FillRand(int** Arr, const int m, const int n)
 {
 	for (int i = 0; i < m; i++)  //количество строк
 	{
@@ -136,7 +136,7 @@ template < typename T >void FillRand(T Arr, const int m, const int n)
 		}
 	}
 }
-template < typename T >void print(T Arr, const int m, const int n)
+void print(int** Arr, const int m, const int n)
 {
 	for (int i = 0; i < m; i++)
 	{
