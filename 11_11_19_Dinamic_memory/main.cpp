@@ -30,12 +30,12 @@ int** allocate(const int m, const int n);
 
 void main()
 {
-	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "RUS");
 
 	int m; // Количество строк
 	int n; // Количество элементов строки
-	std::cout << "Введите количество строк: "; std::cin >> m;
-	std::cout << "Введите количество элементов: "; std::cin >> n;
+	std::cout << "Vvedite kolichestvo strok: "; std::cin >> m;
+	std::cout << "Incert kolichestvo elementov: "; std::cin >> n;
 	// Îáÿâëåíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
 	int** Arr = allocate(m, n);
 	cout << "Memory allocated" << endl;
