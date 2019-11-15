@@ -27,15 +27,17 @@ template < typename T >void erase_col(T** Arr, int m, int& n, int index);
 template < typename T >void clear(T** Arr, int m);
 template < typename T >T** allocate(const int m, const int n);
 
+//#define ROWS
 
 void main()
 {
 	setlocale(LC_ALL, "");
 
-	int m; //êîëè÷åñòâî ñòðîê
-	int n; //êîëè÷åñòâî åëåìåíòîâ â ñòðîêå
-	std::cout << "ââåäèòå êîëè÷åñòâî ñòðîê: "; std::cin >> m;
-	std::cout << "ââåäèòå êîëè÷åñòâî åëåìåíòîâ ñòðîêè: "; std::cin >> n;
+	int m; // Количество строк
+	int n; // Количество элементов строки
+	int index; // Кудо что добавлять и удалять
+	std::cout << "Введите количество строк: "; std::cin >> m;
+	std::cout << "Введите количество элементов: "; std::cin >> n;
 	// Îáÿâëåíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
 	int** Arr = allocate<int>(m, n);
 	cout << "Memory allocated" << endl;
@@ -45,18 +47,19 @@ void main()
 	FillRand(Arr, m, n);
 	print(Arr, m, n);
 
-	/*cout << "Äîáàâëÿåì ñòðîêó â êîíåö:" << endl;
+#ifdef ROWS
+	cout << "Добавление строчки в конец:" << endl;
 	Arr = push_row_back(Arr, m, n);
 	print(Arr, m, n);
 
-	cout << "Äîáàâëÿåì ñòðîêó â íà÷àëî:" << endl;
+	cout << "Добавление строчки в начало:" << endl;
 	Arr = push_row_front(Arr, m, n);
 	print(Arr, m, n);
 	cout << "Äîáàâëÿåì ñòðîêó ïî èíäåêñó:" << endl;
-	*/
-	int index;
+	
+#endif // ROWS
 	/*
-	cout << "ââåäèòå èíäåêñ: "; cin >> index;
+	cout << "Добавление строчки по индексу: "; cin >> index;
 	Arr = insert_row(Arr, m, n, index);
 	cout << "Array added" << endl;
 	print(Arr, m, n);
@@ -128,7 +131,7 @@ void main()
 //////////////---------------------------------/////////////////////////////
 template < typename T >void FillRand(T** Arr, const int m, const int n)
 {
-	for (int i = 0; i < m; i++)  //êîëè÷åñòâî ñòðîê
+	for (int i = 0; i < m; i++)  //строчки
 	{
 		for (int j = 0; j < n; j++) //êîëè÷åñòâî åëåìåíòîâ â ñòðîêå
 		{
@@ -226,10 +229,7 @@ template < typename T >T** insert_row(T** Arr, int& m, int n, int index)
 template < typename T >T** pop_row_back(T** Arr, int& m, int n) //óäàëÿåò ïîñëåäíþþ ñòðîêó
 {
 	T** buffer = new T*[--m]{};
-	for (int i = 0; i < m; i++)
-	{
-		buffer[i] = new int[n] {};
-	}
+	for (int i = 0; i < m; i++)	buffer[i] = new int[n] {};
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -237,10 +237,7 @@ template < typename T >T** pop_row_back(T** Arr, int& m, int n) //óäàëÿåò
 			buffer[i][j] = Arr[i][j]; //êîïèðóåì ýëåìåíòû ÑÎÎÒÂÅÒÑÒÂÅÍÍÎ.
 		}
 	}
-	for (int i = 0; i < m; i++)
-	{
-		delete[] Arr[i];
-	}
+	for (int i = 0; i < m; i++)	delete[] Arr[i];
 	delete[] Arr;
 	return buffer;
 }
