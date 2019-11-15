@@ -1,30 +1,30 @@
 #include<iostream>
 using namespace std;
 
-template < typename T >void FillRand(T Arr, const int m, const int n);
-template < typename T >void print(T Arr, const int m, const int n);
+void FillRand(int** Arr, const int m, const int n);
+void print(int** Arr, const int m, const int n);
 /////////////////////////////////////////////////////////
-template < typename T >int** push_row_back(T arr, int& m, int n);
-template < typename T >int** push_row_front(T arr, int& m, int n);
-template < typename T >int** insert_row(T arr, int& m, int n, int index);
-template < typename T >int** pop_row_back(T arr, int& m, int n);
-template < typename T >int** pop_row_front(T arr, int& m, int n);
-template < typename T >int** erase_row(T arr, int& m, int n, int index);
+int** push_row_back(int** arr, int& m, int n);
+int** push_row_front(int** arr, int& m, int n);
+int** insert_row(int** arr, int& m, int n, int index);
+int** pop_row_back(int** arr, int& m, int n);
+int** pop_row_front(int** arr, int& m, int n);
+int** erase_row(int** arr, int& m, int n, int index);
 ////////////////////////////////////////////////////////
-template < typename T >int** push_row_back22(T Arr, int& m, int n);
-template < typename T >int** push_row_front22(T Arr, int& m, int n);
-template < typename T >int** incert22(T Arr, int& m, int n, int index);
-template < typename T >int** pop_row_back22(T Arr, int& m, int n);
-template < typename T >int** pop_row_front22(T Arr, int& m, int n);
-template < typename T >int** erase_row22(T Arr, int& m, int n, int index);
+int** push_row_back22(int** Arr, int& m, int n);
+int** push_row_front22(int** Arr, int& m, int n);
+int** incert22(int** Arr, int& m, int n, int index);
+int** pop_row_back22(int** Arr, int& m, int n);
+int** pop_row_front22(int** Arr, int& m, int n);
+int** erase_row22(int** Arr, int& m, int n, int index);
 /////////////////////////////////////////////////////
-template < typename T >void push_col_back(T Arr, int m, int& n);
-template < typename T >void push_col_front(T Arr, int m, int& n);
-template < typename T >void insert_col(T Arr, int m, int& n, int index);
-template < typename T >void pop_col_back(T Arr, int m, int& n);
-template < typename T >void pop_col_front(T Arr, int m, int& n);
-template < typename T >void erase_col(T Arr, int m, int& n, int index);
-template < typename T >void clear(T Arr, int m);
+void push_col_back(int** Arr, int m, int& n);
+void push_col_front(int** Arr, int m, int& n);
+void insert_col(int** Arr, int m, int& n, int index);
+void pop_col_back(int** Arr, int m, int& n);
+void pop_col_front(int** Arr, int m, int& n);
+void erase_col(int** Arr, int m, int& n, int index);
+void clear(int** Arr, int m);
 int** allocate(const int m, const int n);
 
 
@@ -32,45 +32,45 @@ void main()
 {
 	setlocale(LC_ALL, "");
 
-	int m; //количество строк
-	int n; //количество елементов в строке
-	std::cout << "введите количество строк: "; std::cin >> m;
-	std::cout << "введите количество елементов строки: "; std::cin >> n;
-	// Обявление двумерного динамического массива
+	int m; //ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ°Г®ГЄ
+	int n; //ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГҐГ«ГҐГ¬ГҐГ­ГІГ®Гў Гў Г±ГІГ°Г®ГЄГҐ
+	std::cout << "ГўГўГҐГ¤ГЁГІГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ°Г®ГЄ: "; std::cin >> m;
+	std::cout << "ГўГўГҐГ¤ГЁГІГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГҐГ«ГҐГ¬ГҐГ­ГІГ®Гў Г±ГІГ°Г®ГЄГЁ: "; std::cin >> n;
+	// ГЋГЎГїГўГ«ГҐГ­ГЁГҐ Г¤ГўГіГ¬ГҐГ°Г­Г®ГЈГ® Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГ®ГЈГ® Г¬Г Г±Г±ГЁГўГ 
 	int** Arr = allocate(m, n);
 	cout << "Memory allocated" << endl;
 	cout << "Filling array" << endl;
 	//////////////////////////////////////////////////////////
-	// Использование двумерного динамического массива
+	// Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ Г¤ГўГіГ¬ГҐГ°Г­Г®ГЈГ® Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГ®ГЈГ® Г¬Г Г±Г±ГЁГўГ 
 	FillRand(Arr, m, n);
 	print(Arr, m, n);
 
-	/*cout << "Добавляем строку в конец:" << endl;
+	/*cout << "Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г±ГІГ°Г®ГЄГі Гў ГЄГ®Г­ГҐГ¶:" << endl;
 	Arr = push_row_back(Arr, m, n);
 	print(Arr, m, n);
 
-	cout << "Добавляем строку в начало:" << endl;
+	cout << "Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г±ГІГ°Г®ГЄГі Гў Г­Г Г·Г Г«Г®:" << endl;
 	Arr = push_row_front(Arr, m, n);
 	print(Arr, m, n);
-	cout << "Добавляем строку по индексу:" << endl;
+	cout << "Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г±ГІГ°Г®ГЄГі ГЇГ® ГЁГ­Г¤ГҐГЄГ±Гі:" << endl;
 	*/
 	int index;
 	/*
-	cout << "введите индекс: "; cin >> index;
+	cout << "ГўГўГҐГ¤ГЁГІГҐ ГЁГ­Г¤ГҐГЄГ±: "; cin >> index;
 	Arr = insert_row(Arr, m, n, index);
 	cout << "Array added" << endl;
 	print(Arr, m, n);
 
-	cout << "Удаляем последнюю строку:" << endl;
+	cout << "Г“Г¤Г Г«ГїГҐГ¬ ГЇГ®Г±Г«ГҐГ¤Г­ГѕГѕ Г±ГІГ°Г®ГЄГі:" << endl;
 	Arr = pop_row_back(Arr, m, n);
 	print(Arr, m, n);
 
-	cout << "Удаляем первую строку:" << endl;
+	cout << "Г“Г¤Г Г«ГїГҐГ¬ ГЇГҐГ°ГўГіГѕ Г±ГІГ°Г®ГЄГі:" << endl;
 	Arr = pop_row_front(Arr, m, n);
 	print(Arr, m, n);
 
-	cout << "Удаляем строку по индексу:" << endl;
-	cout << "введите индекс: "; cin >> index;
+	cout << "Г“Г¤Г Г«ГїГҐГ¬ Г±ГІГ°Г®ГЄГі ГЇГ® ГЁГ­Г¤ГҐГЄГ±Гі:" << endl;
+	cout << "ГўГўГҐГ¤ГЁГІГҐ ГЁГ­Г¤ГҐГЄГ±: "; cin >> index;
 	Arr = erase_row(Arr, m, n, index);
 	print(Arr, m, n);*/
 
@@ -126,17 +126,17 @@ void main()
 	//delete[] Arr;
 }
 //////////////---------------------------------/////////////////////////////
-template < typename T >void FillRand(T Arr, const int m, const int n)
+void FillRand(int** Arr, const int m, const int n)
 {
-	for (int i = 0; i < m; i++)  //количество строк
+	for (int i = 0; i < m; i++)  //ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ°Г®ГЄ
 	{
-		for (int j = 0; j < n; j++) //количество елементов в строке
+		for (int j = 0; j < n; j++) //ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГҐГ«ГҐГ¬ГҐГ­ГІГ®Гў Гў Г±ГІГ°Г®ГЄГҐ
 		{
 			Arr[i][j] = rand() % 100;
 		}
 	}
 }
-template < typename T >void print(T Arr, const int m, const int n)
+void print(int** Arr, const int m, const int n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -148,7 +148,7 @@ template < typename T >void print(T Arr, const int m, const int n)
 	}
 	std::cout << endl;
 }
-template < typename T >int** push_row_back(T Arr, int& m, int n)
+int** push_row_back(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[m + 1]{};
 	for (int i = 0; i < m; i++)
@@ -159,7 +159,7 @@ template < typename T >int** push_row_back(T Arr, int& m, int n)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			buffer[i][j] = Arr[i][j]; //копируем элементы СООТВЕТСТВЕННО.
+			buffer[i][j] = Arr[i][j]; //ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г‘ГЋГЋГ’Г‚Г…Г’Г‘Г’Г‚Г…ГЌГЌГЋ.
 		}
 	}
 	for (int i = 0; i < m; i++)
@@ -172,7 +172,7 @@ template < typename T >int** push_row_back(T Arr, int& m, int n)
 	m++;
 	return Arr;
 }
-template < typename T >int** push_row_front(T Arr, int& m, int n)
+int** push_row_front(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[m + 1]{};
 	for (int i = 0; i < m; i++)
@@ -184,7 +184,7 @@ template < typename T >int** push_row_front(T Arr, int& m, int n)
 		for (int j = 0; j < n; j++)
 		{
 			if (i == m - 1) break;
-			buffer[i + 1][j] = Arr[i][j]; //копируем элементы со здвигом +1(i).
+			buffer[i + 1][j] = Arr[i][j]; //ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±Г® Г§Г¤ГўГЁГЈГ®Г¬ +1(i).
 		}
 	}
 	for (int i = 0; i < m; i++)
@@ -193,11 +193,11 @@ template < typename T >int** push_row_front(T Arr, int& m, int n)
 	}
 	delete[] Arr;
 	Arr = buffer;
-	Arr[m] = new int [n] {}; //я думал что нужно вставить в (0) строку
+	Arr[m] = new int [n] {}; //Гї Г¤ГіГ¬Г Г« Г·ГІГ® Г­ГіГ¦Г­Г® ГўГ±ГІГ ГўГЁГІГј Гў (0) Г±ГІГ°Г®ГЄГі
 	m++;
 	return Arr;
 }
-template < typename T >int** insert_row(T Arr, int& m, int n, int index)
+int** insert_row(int** Arr, int& m, int n, int index)
 {
 	if (index > m) return Arr;
 	int** buffer = new int*[m + 1]{};
@@ -230,7 +230,7 @@ template < typename T >int** insert_row(T Arr, int& m, int n, int index)
 	m++;
 	return Arr;
 }
-template < typename T >int** pop_row_back(T Arr, int& m, int n) //удаляет последнюю строку
+int** pop_row_back(int** Arr, int& m, int n) //ГіГ¤Г Г«ГїГҐГІ ГЇГ®Г±Г«ГҐГ¤Г­ГѕГѕ Г±ГІГ°Г®ГЄГі
 {
 	int** buffer = new int*[--m]{};
 	for (int i = 0; i < m; i++)
@@ -241,7 +241,7 @@ template < typename T >int** pop_row_back(T Arr, int& m, int n) //удаляет послед
 	{
 		for (int j = 0; j < n; j++)
 		{
-			buffer[i][j] = Arr[i][j]; //копируем элементы СООТВЕТСТВЕННО.
+			buffer[i][j] = Arr[i][j]; //ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г‘ГЋГЋГ’Г‚Г…Г’Г‘Г’Г‚Г…ГЌГЌГЋ.
 		}
 	}
 	for (int i = 0; i < m; i++)
@@ -251,7 +251,7 @@ template < typename T >int** pop_row_back(T Arr, int& m, int n) //удаляет послед
 	delete[] Arr;
 	return buffer;
 }
-template < typename T >int** pop_row_front(T Arr, int& m, int n) //удаляет последнюю строку
+int** pop_row_front(int** Arr, int& m, int n) //ГіГ¤Г Г«ГїГҐГІ ГЇГ®Г±Г«ГҐГ¤Г­ГѕГѕ Г±ГІГ°Г®ГЄГі
 {
 	int** buffer = new int*[--m]{};
 	for (int i = 0; i < m; i++)
@@ -262,7 +262,7 @@ template < typename T >int** pop_row_front(T Arr, int& m, int n) //удаляет после
 	{
 		for (int j = 0; j < n; j++)
 		{
-			buffer[i][j] = Arr[i + 1][j]; //копируем элементы СООТВЕТСТВЕННО.
+			buffer[i][j] = Arr[i + 1][j]; //ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г‘ГЋГЋГ’Г‚Г…Г’Г‘Г’Г‚Г…ГЌГЌГЋ.
 		}
 	}
 	for (int i = 0; i < m; i++)
@@ -272,7 +272,7 @@ template < typename T >int** pop_row_front(T Arr, int& m, int n) //удаляет после
 	delete[] Arr;
 	return buffer;
 }
-template < typename T >int** erase_row(T Arr, int& m, int n, int index)
+int** erase_row(int** Arr, int& m, int n, int index)
 {
 	if (index > m) return Arr;
 	int** buffer = new int*[--m]{};
@@ -302,7 +302,7 @@ template < typename T >int** erase_row(T Arr, int& m, int n, int index)
 	return buffer;
 }
 ////////////____________________________________///////////////////////////
-template < typename T >int** push_row_back22(T Arr, int& m, int n)
+int** push_row_back22(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[m + 1];
 	for (int i = 0; i < m; i++) buffer[i] = Arr[i];
@@ -312,7 +312,7 @@ template < typename T >int** push_row_back22(T Arr, int& m, int n)
 	m++;
 	return Arr;
 }
-template < typename T >int** push_row_front22(T Arr, int& m, int n)
+int** push_row_front22(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[m + 1];
 	for (int i = 0; i < m; i++) buffer[i + 1] = Arr[i];
@@ -322,7 +322,7 @@ template < typename T >int** push_row_front22(T Arr, int& m, int n)
 	m++;
 	return Arr;
 }
-template < typename T >int** incert22(T Arr, int& m, int n, int index)
+int** incert22(int** Arr, int& m, int n, int index)
 {
 	int** buffer = new int*[m + 1];
 	for (int i = 0; i < index; i++) buffer[i] = Arr[i];
@@ -333,21 +333,21 @@ template < typename T >int** incert22(T Arr, int& m, int n, int index)
 	m++;
 	return Arr;
 }
-template < typename T >int** pop_row_back22(T Arr, int& m, int n)
+int** pop_row_back22(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[--m];
 	for (int i = 0; i < m; i++) buffer[i] = Arr[i];
 	delete[] Arr;
 	return buffer;
 }
-template < typename T >int** pop_row_front22(T Arr, int& m, int n)
+int** pop_row_front22(int** Arr, int& m, int n)
 {
 	int** buffer = new int*[--m];
 	for (int i = 0; i < m; i++) buffer[i] = Arr[i + 1];
 	delete[] Arr;
 	return buffer;
 }
-template < typename T >int** erase_row22(T Arr, int& m, int n, int index)
+int** erase_row22(int** Arr, int& m, int n, int index)
 {
 	int** buffer = new int*[--m];
 	for (int i = 0; i < index; i++) buffer[i] = Arr[i];
@@ -356,7 +356,7 @@ template < typename T >int** erase_row22(T Arr, int& m, int n, int index)
 	return buffer;
 }
 ////////
-template < typename T >void push_col_back(T Arr, int m, int& n)
+void push_col_back(int** Arr, int m, int& n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -367,7 +367,7 @@ template < typename T >void push_col_back(T Arr, int m, int& n)
 	}
 	n++;
 }
-template < typename T >void push_col_front(T Arr, int m, int& n)
+void push_col_front(int** Arr, int m, int& n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -378,7 +378,7 @@ template < typename T >void push_col_front(T Arr, int m, int& n)
 	}
 	n++;
 }
-template < typename T >void insert_col(T Arr, int m, int& n, int index)
+void insert_col(int** Arr, int m, int& n, int index)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -390,7 +390,7 @@ template < typename T >void insert_col(T Arr, int m, int& n, int index)
 	}
 	n++;
 }
-template < typename T >void pop_col_back(T Arr, int m, int& n)
+void pop_col_back(int** Arr, int m, int& n)
 {
 	--n;
 	for (int i = 0; i < m; i++)
@@ -401,7 +401,7 @@ template < typename T >void pop_col_back(T Arr, int m, int& n)
 		Arr[i] = buffer;
 	}
 }
-template < typename T >void pop_col_front(T Arr, int m, int& n)
+void pop_col_front(int** Arr, int m, int& n)
 {
 	--n;
 	for (int i = 0; i < m; i++)
@@ -412,7 +412,7 @@ template < typename T >void pop_col_front(T Arr, int m, int& n)
 		Arr[i] = buffer;
 	}
 }
-template < typename T >void erase_col(T Arr, int m, int& n, int index)
+void erase_col(int** Arr, int m, int& n, int index)
 {
 	--n;
 	for (int i = 0; i < m; i++)
@@ -424,7 +424,7 @@ template < typename T >void erase_col(T Arr, int m, int& n, int index)
 		Arr[i] = buffer;
 	}
 }
-template < typename T >void clear(T Arr, int m)
+void clear(int** Arr, int m)
 {
 	for (int i = 0; i < m; i++)
 	{
