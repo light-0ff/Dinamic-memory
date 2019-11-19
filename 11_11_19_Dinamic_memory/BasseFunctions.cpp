@@ -23,3 +23,12 @@ template < typename T >void print(T** Arr, const int m, const int n)
 	}
 	std::cout << endl;
 }
+///////////////////////////////////////////////////////
+void print(int arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << arr[i] << "\t";
+	}
+	std::cout << endl;
+}

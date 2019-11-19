@@ -1,6 +1,17 @@
 #pragma once
 #include<iostream>
 using namespace std;
+void print(int arr[], const int n);
+int* push_back(int arr[], int& n, int value);
+int* push_front(int arr[], int& n, int value);
+int* incert(int arr[], int& n, int value, int mesto);
+
+int* push_front2(int* arr, int& n, int value);
+int* incert2(int arr[], int& n, int value, int mesto);
+int* pop_back(int* arr, int& n);
+int* pop_front(int* arr, int& n);
+int* erase(int* arr, int& n, int mesto);
+//_______________________________________????????????????????????????//////
 template < typename T >void FillRand(T** Arr, const int m, const int n);
 template < typename T >void print(T** Arr, const int m, const int n);
 /////////////////////////////////////////////////////////

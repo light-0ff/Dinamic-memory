@@ -4,6 +4,7 @@
 #include"SimpleArrays.cpp"
 #include"MultidemensionalArrays.cpp"
 
+//#define OneDimensionRows
 //#define ROWS
 //#define ALTERNATIVE_ROWS
 #define COLS
@@ -17,6 +18,42 @@ void main()
 	int m; // Количество строк
 	int n; // Количество элементов строки
 	int index; // Кудо что добавлять и удалять
+#ifdef OneDimensionRows
+	cout << "¬ведите размер массива: "; cin >> n;
+	int *arr = new int[n];
+
+	for (int i = 0; i < n; i++)
+		cout << (arr[i] = rand() % 100) << "\t";
+	cout << endl;
+	int value;
+	cout << "¬ведите добавл¤емое значение: "; cin >> value;
+
+	
+	do
+	{	cout << "¬ведите желаемое место: "; cin >> index;
+	} while (index > n);
+	arr = incert2(arr, n, value, index);
+	print(arr, n);
+	cout << "”дал¤ем последний элемент: " << endl;
+	arr = pop_back(arr, n);
+	print(arr, n);
+	cout << "”дал¤ем первый элемент: " << endl;
+	cout << "\t";
+	arr = pop_front(arr, n);
+	print(arr, n);
+
+	int* old = arr;
+	do {
+		cout << "¬ыбирете удал¤ем  элемент: "; cin >> mesto;
+	} while (index > n);
+
+	cout << "\t";
+	arr = erase(arr, n, index);
+	print(arr, n);
+
+	delete[] arr;
+}
+#endif // OneDimensionRows
 	std::cout << "Введите количество строк: "; std::cin >> m;
 	std::cout << "Введите количество элементов: "; std::cin >> n;
 	// Îáÿâëåíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
@@ -27,6 +64,7 @@ void main()
 	// Èñïîëüçîâàíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
 	FillRand(Arr, m, n);
 	print(Arr, m, n);
+
 
 #ifdef ROWS
 	cout << "Добавление строчки в конец:" << endl;
