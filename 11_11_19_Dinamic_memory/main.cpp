@@ -1,18 +1,23 @@
 #include<iostream>
 using namespace std;
 
+#define ROWS
+//#define COLS
+
 template < typename T >T** allocate(const int m, const int n);
 template < typename T >void FillRand(T** Arr, const int m, const int n);
 template < typename T >void print(T** Arr, const int m, const int n);
 template < typename T >void clear(T** Arr, int m);
-////////////////////////////////////////////////////////
+#ifdef ROWS
 template < typename T >T** push_row_back(T** Arr, int& m, int n);
 template < typename T >T** push_row_front(T** Arr, int& m, int n);
 template < typename T >T** incert(T** Arr, int& m, int n, int index);
 template < typename T >T** pop_row_back(T** Arr, int& m, int n);
 template < typename T >T** pop_row_front(T** Arr, int& m, int n);
 template < typename T >T** erase_row(T** Arr, int& m, int n, int index);
-/////////////////////////////////////////////////////
+
+#endif // ROWS
+#ifdef COLS
 template < typename T >void push_col_back(T** Arr, int m, int& n);
 template < typename T >void push_col_front(T** Arr, int m, int& n);
 template < typename T >void insert_col(T** Arr, int m, int& n, int index);
@@ -20,8 +25,7 @@ template < typename T >void pop_col_back(T** Arr, int m, int& n);
 template < typename T >void pop_col_front(T** Arr, int m, int& n);
 template < typename T >void erase_col(T** Arr, int m, int& n, int index);
 
-#define ROWS
-//#define COLS
+#endif // COLS
 
 void main()
 {
@@ -32,12 +36,12 @@ void main()
 	int index; // Кудо что добавлять и удалять
 	std::cout << "Incert nomber of STROK: "; std::cin >> m;
 	std::cout << "Incert nomber of ELEMENTOV: "; std::cin >> n;
-	// Îáÿâëåíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
+	// Обявление двумерного динамического массива
 	int** Arr = allocate<int>(m, n);
 	cout << "Memory allocated" << endl;
 	cout << "Filling array" << endl;
 	//////////////////////////////////////////////////////////
-	// Èñïîëüçîâàíèå äâóìåðíîãî äèíàìè÷åñêîãî ìàññèâà
+	// Использование двумерного динамического массива
 	FillRand(Arr, m, n);
 	print(Arr, m, n);
 
@@ -90,7 +94,7 @@ void main()
 #endif // COLS
 
 }
-//////////////---------------------------------/////////////////////////////
+///////////////////////////////////////////
 template < typename T >T** allocate(const int m, const int n)
 {
 	T** Arr = new T*[m];
